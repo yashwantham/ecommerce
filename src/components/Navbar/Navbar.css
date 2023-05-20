@@ -1,0 +1,104 @@
+@import "/src/styling/global.css";
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+.nav-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* border: 2px solid; */
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    height: 5rem;
+    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, .05);
+    background-color: #fff;
+    /* font-size: 1.8rem; */
+
+}
+
+.app-name {
+    text-decoration: underline;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: var(--primary-color);
+    /* color: red; */
+}
+
+.search-bar {
+    width: 20rem;
+    height: 1rem;
+    border-radius: 4px;
+    border: none;
+    padding: 0.5rem;
+    background-color: #e5e5e8;
+}
+
+.mobile-search-bar {
+    display: none;
+    height: 1rem;
+    width: 100%;
+    display: inline-flex;
+    display: none;
+    border: none;
+    padding: 0.5rem;
+    background-color: #e5e5e8;
+}
+
+.login-btn {
+    text-decoration: none;
+    border: 3px solid var(--primary-color);
+    border-radius: 5px;
+    color: #000000;
+    /* background-color: #e5e5e8; */
+    padding: 0.2rem 0.7rem;
+    margin: 0 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.login-btn:hover {
+    background-color: #e5e5e8;
+}
+
+.icon {
+    margin: 0 1.5rem;
+    font-size: 1.8rem;
+    color: #000000;
+}
+
+
+@media only screen and (max-width: 768px) {}
+
+@media only screen and (max-width: 1024px) {
+
+    .nav-container {
+        /* justify-content: space-between; */
+    }
+
+    .app-name {
+        font-size: 2.5rem;
+    }
+
+    .search-bar {
+        display: none;
+    }
+
+    .mobile-search-bar {
+        display: inline-flex;
+    
+    }
+
+    .icon {
+        margin: 0 0.7rem;
+        font-size: 1.5rem;
+        color: #000000;
+    }
+
+    .login-btn {
+        padding: 0.2rem 0.7rem;
+        margin: 0 1rem;
+        font-size: 1rem;
+        font-weight: 700;
+    }
+
+}
