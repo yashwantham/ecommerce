@@ -10,7 +10,7 @@ export function Navbar() {
         <>
             <div className="nav-container">
                 <div >
-                    <NavLink className="app-name">
+                    <NavLink to="/" className="app-name">
                         TopShop
                     </NavLink>
                 </div>
@@ -21,14 +21,14 @@ export function Navbar() {
                     <input type="text" placeholder="Search" className="search-bar" />
                 </div>
                 <div className="navigations">
-                    <NavLink className="right-nav login-btn">Login</NavLink>
-                    <NavLink className="right-nav icon">
+                    <NavLink to="/login" className="right-nav login-btn">Login</NavLink>
+                    <NavLink to="/wishlist" className="right-nav icon">
                         <FontAwesomeIcon icon={faHeart} />
                     </NavLink>
-                    <NavLink className="right-nav icon">
+                    <NavLink to="/cart" className="right-nav icon">
                         <FontAwesomeIcon icon={faCartShopping} />
                     </NavLink>
-                    <NavLink className="right-nav icon">
+                    <NavLink to="/profile" className="right-nav icon">
                         <FontAwesomeIcon icon={faUser} />
                     </NavLink>
                 </div>
