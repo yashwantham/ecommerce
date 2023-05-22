@@ -1,8 +1,9 @@
 @import "/src/styling/global.css";
 
-/* .homepage-container {
-    background-color: #d5e1f1;
-} */
+.homepage-container {
+    /* background-color: #0069f3; */
+    margin: 0;
+}
 
 .main-img-container {
     display: block;
