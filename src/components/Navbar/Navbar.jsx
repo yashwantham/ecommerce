@@ -14,14 +14,14 @@ export function Navbar() {
                         TopShop
                     </NavLink>
                 </div>
-                <div className="app-logo">
+                {/* <div className="app-logo">
                     <img src="" alt="" />
-                </div>
+                </div> */}
                 <div>
                     <input type="text" placeholder="Search" className="search-bar" />
                 </div>
                 <div className="navigations">
-                    <NavLink to="/login" className="right-nav login-btn">Login</NavLink>
+                    <NavLink to="/productlist" className="right-nav shopnow-btn">Shop Now!</NavLink>
                     <NavLink to="/wishlist" className="right-nav icon">
                         <FontAwesomeIcon icon={faHeart} />
                     </NavLink>
@@ -31,8 +31,12 @@ export function Navbar() {
                     <NavLink to="/profile" className="right-nav icon">
                         <FontAwesomeIcon icon={faUser} />
                     </NavLink>
+                    <NavLink to="/login" className="right-nav login-btn">Login</NavLink>
                 </div>
             </div>
+            <div>
+                <NavLink to="/login" className="right-nav login-btn-mobile">Login</NavLink>
+                </div>
             <div>
                 <input type="text" placeholder="Search" className="mobile-search-bar" />
             </div>

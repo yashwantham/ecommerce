@@ -1,8 +1,10 @@
 @import "/src/styling/global.css";
 
 .homepage-container {
-    /* background-color: #0069f3; */
+    /* background-color: #ebebeb; */
     margin: 0;
+    padding-bottom: 6rem;
+
 }
 
 .main-img-container {
@@ -12,7 +14,7 @@
 
 .main-img{
     width: 100%;
-    /* min-height: 10rem; */
+    min-height: 15rem;
     transition: transform 1s;
     /* margin: 1rem 0; */
 }
@@ -65,7 +67,7 @@
     /* border: 2px solid black; */
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-   margin-top: 4rem;
+    margin-top: 4rem;
 }
 
 .category-item:hover{
