@@ -1,0 +1,61 @@
+
+.login-container {
+    border-radius: 25px;
+    width: 30rem;
+    margin: 6rem auto;
+    padding: 2rem 0rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-container input {
+    border: none;
+    background-color: #e9e8ee;
+    height: 1.5rem;
+    width: 16rem;
+    border-radius: 15px;
+    padding: 0.4rem 2rem;
+}
+
+.email-container {
+    margin: 1rem;
+}
+
+.password-container {
+    margin: 1rem;
+}
+
+.login-btn-container {
+    margin: 1rem;
+}
+
+.login-submit-btn {
+    border: none;
+    width: 20rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 15px;
+    font-weight: 700;
+    font-size: 1.3rem;
+    background-color: black;
+    color: white;
+}
+
+.signup-text {
+    margin-top: 1rem;
+    /* text-align: left; */
+}
+
+.signup-link {
+    color: var(--primary-color);
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+@media only screen and (max-width: 1024px) {
+    .login-container {
+        width: 20rem;
+        margin: 8rem auto;
+        padding: 0rem;
+    }
+}

@@ -36,7 +36,7 @@ export function Navbar() {
             </div>
             <div>
                 <NavLink to="/login" className="right-nav login-btn-mobile">Login</NavLink>
-                </div>
+            </div>
             <div>
                 <input type="text" placeholder="Search" className="mobile-search-bar" />
             </div>

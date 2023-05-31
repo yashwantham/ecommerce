@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 
 import "./HomePage.css";
+import {Footer} from "../../components/Footer/Footer"
 import { categories } from "../../backend/db/categories";
 
 export function HomePage() {
@@ -36,6 +37,8 @@ export function HomePage() {
 
                 </div>
             </div>
+
+            <Footer/>
         </>
     )
 }
