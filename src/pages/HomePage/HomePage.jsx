@@ -19,7 +19,7 @@ export function HomePage() {
                 <div className="category-container">
 
                     <div className="container-heading">
-                        <h2 className="heading">Shop by Category</h2>
+                        <h2 className="heading">SHOP BY CATEGORY</h2>
                     </div>
 
                     <div className="categories-list">

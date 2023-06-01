@@ -55,7 +55,7 @@
 @media only screen and (max-width: 1024px) {
     .login-container {
         width: 20rem;
-        margin: 8rem auto;
+        margin: 4rem auto;
         padding: 0rem;
     }
 }

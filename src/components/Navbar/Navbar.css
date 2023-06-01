@@ -63,7 +63,9 @@
 
 .login-btn:hover {
     /* background-color: #e5e5e8; */
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset; */
+    color: #fff;
+    background-color: var(--primary-color);
 }
 
 .login-btn-mobile {
@@ -71,7 +73,9 @@
 }
 
 .login-btn-mobile:hover {
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset; */
+    color: #fff;
+    background-color: var(--primary-color);
 }
 
 .shopnow-btn {
@@ -86,14 +90,20 @@
 }
 
 .shopnow-btn:hover {
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset; */
     /* box-shadow: var(--primary-color) 0px 5px 15px; */
+    color: #fff;
+    background-color: var(--primary-color);
 }
 
 .icon {
     margin: 0 1.5rem;
     font-size: 1.8rem;
     color: #000000;
+}
+
+.icon:hover {
+    color: var(--primary-color);
 }
 
 

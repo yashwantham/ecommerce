@@ -11,6 +11,7 @@ import { ProductlistPage } from "./pages/ProductlistPage/ProductlistPage";
 import { ProfilePage } from "./pages/ProfilePage/ProfilePage"
 import { LoginPage } from "./pages/Authentication/LoginPage/LoginPage";
 import { SignupPage } from "./pages/Authentication/signup/SignupPage";
+import { SingleproductPage } from "./pages/SingleproductPage/SingleproductPage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage/>}/>
         <Route path="/productlist" element={<ProductlistPage/>}/>
+        <Route path="/productdetail/:productId" element={<SingleproductPage/>}/>
         <Route path="/wishlist" element={<WishlistPage/>}/>
         <Route path="/cart" element={<CartPage/>}/>
         <Route path="/profile" element={<ProfilePage/>}/>

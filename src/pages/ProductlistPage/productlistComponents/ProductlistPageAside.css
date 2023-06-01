@@ -1,0 +1,5 @@
+.filters-contaier {
+    border-right: 1px solid var(--primary-color);
+    padding: 3rem;
+    /* position: sticky; */
+}
