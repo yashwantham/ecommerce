@@ -1,4 +1,7 @@
 import { NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+
 
 import "./ProductCard.css";
 
@@ -15,7 +18,7 @@ export function ProductCard({ product }) {
                             <img className="product-img" src={product.image} alt="" />
                         </div>
                         <span className="wishlist-icon-container">
-                            <i class="wishlist-icon fa-solid fa-heart"></i>
+                            <FontAwesomeIcon icon={faHeart} className="wishlist-icon"/>
                         </span>
                     </div>
                     <div className="product-info">

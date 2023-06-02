@@ -1,11 +1,26 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faCartShopping, faUser } from "@fortawesome/free-solid-svg-icons";
 
 import "./Navbar.css"
+import { useContext } from "react";
+import { FilterContext } from "../../contexts/FilterProvider";
+import { ACTIONS } from "../../reducers/FilterReducer";
 // import Topshop_Logo from "assets/images";
 
 export function Navbar() {
+
+    const navigate = useNavigate()
+
+    const {SET_SEARCHED_TERM} = ACTIONS;
+
+    const {dispatchFilter} = useContext(FilterContext)
+
+    const searchTermSetter = (event) => {
+        dispatchFilter({type: SET_SEARCHED_TERM, payload: event.target.value});
+        navigate("/productlist");
+    }
+
     return (
         <>
             <div className="nav-container">
@@ -18,7 +33,7 @@ export function Navbar() {
                     <img src="" alt="" />
                 </div> */}
                 <div>
-                    <input type="text" placeholder="Search" className="search-bar" />
+                    <input type="text" placeholder="Search" className="search-bar" onChange={(event) => searchTermSetter(event)}/>
                 </div>
                 <div className="navigations">
                     <NavLink to="/productlist" className="right-nav shopnow-btn">Shop Now!</NavLink>
@@ -38,7 +53,7 @@ export function Navbar() {
                 <NavLink to="/login" className="right-nav login-btn-mobile">Login</NavLink>
             </div>
             <div>
-                <input type="text" placeholder="Search" className="mobile-search-bar" />
+                <input type="text" placeholder="Search" className="mobile-search-bar" onChange={(event) => searchTermSetter(event)}/>
             </div>
         </>
     )
