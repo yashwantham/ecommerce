@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom"
 import "./HomePage.css";
 import { Footer } from "../../components/Footer/Footer"
 import { categories } from "../../backend/db/categories";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { FilterContext } from "../../contexts/FilterProvider";
 import { ACTIONS } from "../../reducers/FilterReducer";
 
@@ -12,7 +12,15 @@ export function HomePage() {
     const navigate = useNavigate();
 
     const {dispatchFilter} = useContext(FilterContext);
-    const {SET_CATEGORY_FILTER} = ACTIONS
+    const {SET_CATEGORY_FILTER, CLEAR_ALL_FILTERS} = ACTIONS;
+
+    useEffect(() =>{
+        dispatchFilter({type: CLEAR_ALL_FILTERS, payload: {
+            maxPriceRange: 4000, category: {
+                MEN: false, WOMEN: false, KIDS: false
+            }, selectedSizes: [], minRating: 0, sortBy: "", searchedTerm: ""
+        }})
+    },[])
 
     const categoryNavigationHandler = (categ) => dispatchFilter({type: SET_CATEGORY_FILTER, payload: categ})
 
