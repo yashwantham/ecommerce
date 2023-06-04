@@ -1,9 +1,9 @@
 
 .login-container {
-    border-radius: 25px;
+    /* border-radius: 25px; */
     width: 30rem;
     margin: 6rem auto;
-    padding: 2rem 0rem;
+    /* padding: 2rem 0rem; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,11 +11,17 @@
 
 .login-container input {
     border: none;
-    background-color: #e9e8ee;
-    height: 1.5rem;
-    width: 16rem;
-    border-radius: 15px;
+    background-color: var(--verylight-blue);
+    height: 1.6rem;
+    width: 16.5rem;
+    border-radius: 5px;
     padding: 0.4rem 2rem;
+    margin: 0.2rem;
+}
+
+.formError-warning-login {
+    color: red;
+    text-align: center;
 }
 
 .email-container {
@@ -27,18 +33,22 @@
 }
 
 .login-btn-container {
-    margin: 1rem;
+    margin-top: 1rem;
 }
 
 .login-submit-btn {
     border: none;
     width: 20rem;
-    padding: 0.6rem 0.8rem;
-    border-radius: 15px;
+    padding: 0.6rem 0rem;
+    border-radius: 25px;
     font-weight: 700;
     font-size: 1.3rem;
     background-color: black;
     color: white;
+}
+
+.login-submit-btn:hover {
+    cursor: pointer;
 }
 
 .signup-text {

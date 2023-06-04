@@ -12,7 +12,7 @@ export function ProductCard({ product }) {
     return (
         <>
             <div className="productcard-container" key={product._id}>
-                <NavLink to={`/productdetail/${product._id}`} className="product-card">
+                <NavLink to={`/productlist/${product._id}`} className="product-card">
                     <div className="product-img-n-icon">
                         <div className="product-img-container">
                             <img className="product-img" src={product.image} alt="" />

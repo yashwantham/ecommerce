@@ -12,7 +12,7 @@ export function FilterProvider({ children }) {
         }, selectedSizes: [], minRating: 0, sortBy: "", searchedTerm: ""
     })
 
-    console.log(filterState);
+    // console.log(filterState);
 
     return (
         <>
