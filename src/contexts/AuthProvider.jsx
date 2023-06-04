@@ -55,9 +55,15 @@ export function AuthProvider({children}){
         }
     }
 
+    const logoutAuthUser = () => {
+        localStorage.removeItem("userToken");
+        dispatchAuth({type: SET_LOGIN_FALSE});
+        navigate("/logout");
+    }
+
     return(
         <>
-            <AuthContext.Provider value={{authState, dispatchAuth, signupAuthUser, loginAuthUser}}>{children}</AuthContext.Provider>
+            <AuthContext.Provider value={{authState, dispatchAuth, signupAuthUser, loginAuthUser, logoutAuthUser}}>{children}</AuthContext.Provider>
         </>
     )
 }
