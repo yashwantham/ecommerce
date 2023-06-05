@@ -19,7 +19,7 @@ export function AuthProvider({children}){
     })
 
     const signupAuthUser = async (signupData) => {
-        console.log(signupData);
+        // console.log(signupData);
         try{
             const response = await axios.post("/api/auth/signup", signupData);
             if(response.status === 201) {
@@ -29,7 +29,7 @@ export function AuthProvider({children}){
                 navigate("/");
                 // console.log(response);
             }
-            console.log(response)
+            // console.log(response)
         } 
         catch (error) {
             dispatchAuth({type: SET_LOGIN_FALSE});
@@ -38,7 +38,7 @@ export function AuthProvider({children}){
     }
 
     const loginAuthUser = async (loginData) => {
-        console.log(loginData)
+        // console.log(loginData)
         try{
             const response = await axios.post("/api/auth/login", loginData)
             if(response.status === 200) {
@@ -47,7 +47,7 @@ export function AuthProvider({children}){
                 dispatchAuth({type: SET_USER_DATA, payload: response.data.foundUser});
                 navigate("/");
             }
-            console.log(response)
+            // console.log(response)
         }
         catch (error) {
             dispatchAuth({type: SET_LOGIN_FALSE})

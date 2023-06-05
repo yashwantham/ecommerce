@@ -36,11 +36,11 @@ export const DataProvider = ({ children }) => {
         getProductlist();
     }, [])
 
-    // console.log(dataState);
+    console.log("datastate",dataState);
 
     return (
         <>
-            <DataContext.Provider value={{dataState}}>{children}</DataContext.Provider>
+            <DataContext.Provider value={{dataState, dispatchData}}>{children}</DataContext.Provider>
         </>
     )
 }

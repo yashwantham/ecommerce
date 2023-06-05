@@ -1,11 +1,40 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 
 import "./ProductCard.css";
+import { useContext } from "react";
+import { AuthContext } from "../../../contexts/AuthProvider";
+import { addToWishlist, isWishlisted, removeFromWishlist } from "../../../utils/wishlistService";
+import { DataContext } from "../../../contexts/DataProvider";
+
 
 export function ProductCard({ product }) {
+
+    const navigate = useNavigate();
+
+    const {authState} = useContext(AuthContext);
+
+    const {dataState, dispatchData} = useContext(DataContext);
+
+    const authToken = localStorage.getItem("userToken");
+
+    const addToWishlistHandler = (e, authToken, product) => {
+        e.preventDefault();
+        if(!authState.isLoggedin) {
+            navigate("/login");
+        }
+        else if(isWishlisted(dataState, product._id)) {
+            removeFromWishlist(authToken, product._id, dispatchData);
+        } else {
+            addToWishlist(authToken, product, dispatchData);
+        }
+    }
+
+    const addToCartHandler = (e, authToken, product) => {
+        
+    }
 
     const discountPercentage = (price, original_price) => Math.round((price / original_price) * 100);
 
@@ -17,9 +46,9 @@ export function ProductCard({ product }) {
                         <div className="product-img-container">
                             <img className="product-img" src={product.image} alt="" />
                         </div>
-                        <span className="wishlist-icon-container">
-                            <FontAwesomeIcon icon={faHeart} className="wishlist-icon"/>
-                        </span>
+                        <div className="wishlist-icon-container" onClick={(e) => addToWishlistHandler(e, authToken, product)}>
+                            {isWishlisted(dataState, product._id) ? <FontAwesomeIcon icon={faHeart} className="wishlist-icon-red" /> : <FontAwesomeIcon icon={faHeart} className="wishlist-icon" /> }
+                        </div>
                     </div>
                     <div className="product-info">
                         <div className="product-title">
