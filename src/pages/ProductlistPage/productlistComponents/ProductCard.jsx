@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
@@ -8,9 +8,13 @@ import { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider";
 import { addToWishlist, isWishlisted, removeFromWishlist } from "../../../utils/wishlistService";
 import { DataContext } from "../../../contexts/DataProvider";
+import { addToCart, isPresentedInCart, removeFromCart } from "../../../utils/cartService";
 
 
 export function ProductCard({ product }) {
+
+    // const location = useLocation();
+    // console.log(location)
 
     const navigate = useNavigate();
 
@@ -27,13 +31,28 @@ export function ProductCard({ product }) {
         }
         else if(isWishlisted(dataState, product._id)) {
             removeFromWishlist(authToken, product._id, dispatchData);
-        } else {
+        } 
+        else {
             addToWishlist(authToken, product, dispatchData);
         }
     }
 
     const addToCartHandler = (e, authToken, product) => {
-        
+        e.preventDefault();
+        if(!authState.isLoggedin) {
+            navigate("/login");
+        }
+        else if(isPresentedInCart(dataState, product._id)) {
+            removeFromCart(authToken, product._id, dispatchData);
+        }
+        else {
+            addToCart(authToken, product, dispatchData)
+        }
+    }
+
+    const goToCartHandler = (event) => {
+        event.preventDefault();
+        navigate("/cart");
     }
 
     const discountPercentage = (price, original_price) => Math.round((price / original_price) * 100);
@@ -75,7 +94,7 @@ export function ProductCard({ product }) {
                             </div>
                         </div>
                         <div className="addtocart-btn-container">
-                            <button className="addtocart-btn">Add to Cart</button>
+                            {isPresentedInCart(dataState, product._id) ? <button className="addtocart-btn" onClick={(e) => goToCartHandler(e)}>Go to Cart</button> : <button className="addtocart-btn" onClick={(e) => addToCartHandler(e, authToken, product)}>Add to Cart</button> }
                         </div>
                     </div>
                 </NavLink>

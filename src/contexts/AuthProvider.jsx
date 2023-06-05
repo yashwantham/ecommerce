@@ -26,7 +26,7 @@ export function AuthProvider({children}){
                 localStorage.setItem("userToken", response.data.encodedToken);
                 dispatchAuth({type: SET_LOGIN_TRUE});
                 dispatchAuth({type: SET_USER_DATA, payload: response.data.createdUser})
-                navigate("/");
+                navigate("/productlist");
                 // console.log(response);
             }
             // console.log(response)
@@ -45,7 +45,7 @@ export function AuthProvider({children}){
                 localStorage.setItem("userToken", response.data.encodedToken)
                 dispatchAuth({type: SET_LOGIN_TRUE});
                 dispatchAuth({type: SET_USER_DATA, payload: response.data.foundUser});
-                navigate("/");
+                navigate("/productlist");
             }
             // console.log(response)
         }
