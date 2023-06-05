@@ -17,7 +17,7 @@ export const getWishlistedProducts = async (authToken) => {
     console.error(error);
   }
 };
-
+ 
 export const addToWishlist = async (authToken, product, dispatchData) => {
   try {
     const response = await axios.post(

@@ -1,0 +1,14 @@
+.address-card-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    border: 2px solid var(--gray-color);
+    border-radius: 5px;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.radio-input {
+    margin-right: 1rem;
+}
