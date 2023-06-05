@@ -30,8 +30,9 @@ export function CartProductCard({ product }) {
 
     const cartUpdateHandler = (e, authToken, product, type, dispatchData) => {
         e.preventDefault();
-        if(product.qty === 1) {
+        if(product.qty === 1 && type === "decrement") {
             removeFromCart(authToken, product._id, dispatchData);
+            return;
         }
         updateItemQuantityInCart(authToken, product._id, type, dispatchData);
     }

@@ -29,8 +29,8 @@ export function LoginPage() {
     const loginAsGuestSubmit = (event) => {
         event.preventDefault();
         loginAuthUser({
-            email: "adarshbalika@gmail.com",
-            password: "adarshbalika"
+            email: "rockyms@gmail.com",
+            password: "rockyms"
         })
     }
 

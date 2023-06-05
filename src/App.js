@@ -13,6 +13,7 @@ import { SignupPage } from "./pages/AuthenticationPages/signup/SignupPage";
 import { SingleproductPage } from "./pages/SingleproductPage/SingleproductPage";
 import { RequiresAuth } from "./utils/RequiresAuth";
 import { LogoutPage } from "./pages/AuthenticationPages/logout/LogoutPage";
+import { CheckoutPage } from "./pages/CheckoutPage/CheckoutPage";
 
 function App() {
   return (
@@ -46,9 +47,17 @@ function App() {
             </RequiresAuth>
           }
         />
+        <Route
+          path="/checkout"
+          element={
+            <RequiresAuth>
+              <CheckoutPage />
+            </RequiresAuth>
+          }
+        />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/logout" element={<LogoutPage/>} />
+        <Route path="/logout" element={<LogoutPage />} />
         <Route path="/mockman" element={<Mockman />} />
       </Routes>
     </div>

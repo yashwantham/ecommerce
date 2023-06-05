@@ -1,6 +1,13 @@
+import { useLocation, useNavigate } from "react-router-dom";
+
 import "./CartSummaryCard.css"
 
 export function CartSummaryCard({cartList}) {
+
+    const location = useLocation();
+    console.log(location)
+
+    const navigate = useNavigate();
 
     const totalPrice = (cartList) => cartList.reduce((acc, {qty, price}) => acc + (qty * price) , 0)
 
@@ -8,7 +15,8 @@ export function CartSummaryCard({cartList}) {
         <>
             <div className="cartsummary-card-container">
                 <div className="cart-summary-heading">
-                Cart Price Details
+                {location?.pathname === "/cart" && "Cart Price Details"}
+                {location?.pathname === "/checkout" && "Order Summary"}
                 </div>
                 <hr />
                 <div className="product-checkoutlist-container">
@@ -24,9 +32,12 @@ export function CartSummaryCard({cartList}) {
                     <p>Total Price</p>
                     <p>{totalPrice(cartList)}</p>
                 </div>
-                <button className="checkout">
+                {location?.pathname === "/cart" && <button className="checkout" onClick={() => navigate("/checkout")}>
                     Checkout
-                </button>
+                </button>}
+                {location?.pathname === "/checkout" && <button className="checkout" >
+                    Place Order
+                </button>}
             </div>
         </>
     )

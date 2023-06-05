@@ -6,6 +6,7 @@ import "./Navbar.css"
 import { useContext } from "react";
 import { FilterContext } from "../../contexts/FilterProvider";
 import { ACTIONS } from "../../reducers/FilterReducer";
+import { AuthContext } from "../../contexts/AuthProvider";
 // import Topshop_Logo from "assets/images";
 
 export function Navbar() {
@@ -15,6 +16,8 @@ export function Navbar() {
     const {SET_SEARCHED_TERM} = ACTIONS;
 
     const {dispatchFilter} = useContext(FilterContext)
+
+    const {authState} = useContext(AuthContext);
 
     const searchTermSetter = (event) => {
         dispatchFilter({type: SET_SEARCHED_TERM, payload: event.target.value});
@@ -46,11 +49,11 @@ export function Navbar() {
                     <NavLink to="/profile" className="right-nav icon">
                         <FontAwesomeIcon icon={faUser} />
                     </NavLink>
-                    <NavLink to="/login" className="right-nav login-btn">Login</NavLink>
+                    {!authState.isLoggedin && <NavLink to="/login" className="right-nav login-btn">Login</NavLink>}
                 </div>
             </div>
             <div>
-                <NavLink to="/login" className="right-nav login-btn-mobile">Login</NavLink>
+            {!authState.isLoggedin && <NavLink to="/login" className="right-nav login-btn-mobile">Login</NavLink>}
             </div>
             <div>
                 <input type="text" placeholder="Search" className="mobile-search-bar" onChange={(event) => searchTermSetter(event)}/>

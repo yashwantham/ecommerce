@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createContext, useEffect, useReducer } from "react";
 import { ACTIONS, DataReducer } from "../reducers/DataReducer";
-
+import { exampleAdress } from "../utils/exampleAdress";
 export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
@@ -12,7 +12,9 @@ export const DataProvider = ({ children }) => {
         categories: [],
         productlist: [],
         wishlist: [], 
-        cart: []
+        cart: [],
+        address: [{...exampleAdress}],
+        orderHistory: []
     })
 
     const getCategories = async () => {
@@ -30,6 +32,8 @@ export const DataProvider = ({ children }) => {
         }
         catch (error) { console.error(error); }
     }
+
+    //if loggen in then get wishlist and cart datasets
 
     useEffect(() => {
         getCategories();
