@@ -5,7 +5,6 @@ import "./CartSummaryCard.css"
 export function CartSummaryCard({cartList}) {
 
     const location = useLocation();
-    console.log(location)
 
     const navigate = useNavigate();
 

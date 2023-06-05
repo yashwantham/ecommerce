@@ -5,7 +5,8 @@
 }
 
 .address-list-container {
-    margin: 2rem 4rem;
+    /* margin: 2rem 4rem; */
+    margin: auto;
 }
 
 .select-address {
@@ -16,16 +17,19 @@
 .address-form-n-btns {
     border: 2px solid var(--gray-color);
     border-radius: 5px;
+    width: 25rem;
+    margin: auto;
 }
 
-.address-form-cotainer {
+.address-form-container {
     display: flex;
     flex-direction: column;
     border-radius: 5px;
     padding: 1rem;
+    margin: auto;
 }
 
-.address-form-cotainer input {
+.address-form-container input {
     height: 1rem;
     border-radius: 5px;
     /* border: none; */

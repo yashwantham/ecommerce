@@ -4,8 +4,11 @@ import { AddressCard } from "./AddressCard";
 import { useContext, useState } from "react";
 import { DataContext } from "../../../contexts/DataProvider";
 import { ACTIONS } from "../../../reducers/DataReducer";
+import { useLocation } from "react-router-dom";
 
 export function AddressListComponents({ address }) {
+
+    const location = useLocation()
 
     const { ADD_NEW_ADDRESS } = ACTIONS;
 
@@ -31,9 +34,9 @@ export function AddressListComponents({ address }) {
             <div className="address-list-form-container">
 
                 <div className="address-list-container">
-                    <p className="select-address">
+                {!(location?.pathname === "/profile") && <p className="select-address">
                         Select Address
-                    </p>
+                    </p>}
                     {address.map((oneAddress) => <AddressCard address={oneAddress} />)}
                 </div>
 
@@ -42,7 +45,7 @@ export function AddressListComponents({ address }) {
                 </div>}
 
                 {addressFromShow && <form onSubmit={addressSaveHandler}> <div className="address-form-n-btns">
-                    <div className="address-form-cotainer">
+                    <div className="address-form-container">
                         <input type="text" name="name" placeholder="Enter name" onChange={(e) => inputChangeHandler(e)} required />
                         <input type="text" name="houseNumber" placeholder="Enter house no." onChange={(e) => inputChangeHandler(e)} required />
                         <input type="text" name="street" placeholder="Enter street" onChange={(e) => inputChangeHandler(e)} required />
