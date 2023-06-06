@@ -49,7 +49,7 @@ export function ProductCard({ product }) {
             addToCart(authToken, product, dispatchData)
         }
     }
-
+ 
     const goToCartHandler = (event) => {
         event.preventDefault();
         navigate("/cart");
@@ -102,3 +102,4 @@ export function ProductCard({ product }) {
         </>
     )
 }
+

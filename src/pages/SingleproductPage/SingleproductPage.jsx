@@ -1,25 +1,32 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
+import { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom"
 
 import "./SingleproductPage.css"
-// import { DataContext } from "../../contexts/DataProvider";
+
 import axios from "axios";
+import { AuthContext } from "../../contexts/AuthProvider";
+import { addToCart, isPresentedInCart, removeFromCart } from "../../utils/cartService";
+import { DataContext } from "../../contexts/DataProvider";
+import { addToWishlist, isWishlisted, removeFromWishlist } from "../../utils/wishlistService";
 
 export function SingleproductPage() {
 
+    const navigate = useNavigate();
+
+    const authToken = localStorage.getItem("userToken");
+
+    const {authState} = useContext(AuthContext);
+    const {dataState, dispatchData} = useContext(DataContext);
+
+
     const [selectedProduct, setSelectedProduct] = useState({});
     const { productId } = useParams();
-
-    // console.log(productId)
-
-    // const [isLoading, setIsLoading] = useState(true);
 
     const getProduct = async() => {
         try{
             const response = await axios.get(`/api/products/${productId}`);
             if(response.status === 200){ console.log(response)
-                setSelectedProduct(response.data.product)
-                // setIsLoading(false);
+                setSelectedProduct(response.data.product);
             }
         }
         catch (error) {
@@ -33,10 +40,36 @@ export function SingleproductPage() {
 
     const discountPercentage = (price, original_price) => Math.round((price / original_price) * 100);
 
-    
-//   if (isLoading) {
-//     return <div>Loading...</div>;
-//   }
+    const addToWishlistHandler = (e, authToken, product) => {
+        e.preventDefault();
+        if(!authState.isLoggedin) {
+            navigate("/login");
+        }
+        else if(isWishlisted(dataState, product._id)) {
+            removeFromWishlist(authToken, product._id, dispatchData);
+        } 
+        else {
+            addToWishlist(authToken, product, dispatchData);
+        }
+    }
+
+    const addToCartHandler = (e, authToken, product) => {
+        e.preventDefault();
+        if(!authState.isLoggedin) {
+            navigate("/login");
+        }
+        else if(isPresentedInCart(dataState, product._id)) {
+            removeFromCart(authToken, product._id, dispatchData);
+        }
+        else {
+            addToCart(authToken, product, dispatchData)
+        }
+    }
+ 
+    const goToCartHandler = (event) => {
+        event.preventDefault();
+        navigate("/cart");
+    }
 
     return (
         <>
@@ -69,10 +102,13 @@ export function SingleproductPage() {
                         <small className="taxes-text">inclusive of all taxes</small>
                         <div className="selectedproduct-btns">
                             <div className="selectedproduct-addtocart-btn">
-                                <button>Add to Cart</button>
+                            {isPresentedInCart(dataState, selectedProduct._id) ?<button  onClick={(e) => goToCartHandler(e)}>Go to Cart</button> :
+                            <button onClick={(e) => addToCartHandler(e, authToken, selectedProduct)}>Add to Cart</button>}
+                                
                             </div>
                             <div className="selectedproduct-wishlist-btn">
-                                <button>Wishlist</button>
+                                {isWishlisted(dataState, selectedProduct._id) ? <button onClick={(e) => addToWishlistHandler(e, authToken, selectedProduct)}>Remove from wishlist</button> :
+                                <button onClick={(e) => addToWishlistHandler(e, authToken, selectedProduct)}>Wishlist</button>}
                             </div>
                         </div>
                     </div>

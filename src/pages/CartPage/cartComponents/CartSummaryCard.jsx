@@ -34,7 +34,7 @@ export function CartSummaryCard({cartList}) {
                 {location?.pathname === "/cart" && <button className="checkout" onClick={() => navigate("/checkout")}>
                     Checkout
                 </button>}
-                {location?.pathname === "/checkout" && <button className="checkout" >
+                {location?.pathname === "/checkout" && <button className="checkout" onClick={navigate=("/orderplaced")}>
                     Place Order
                 </button>}
             </div>

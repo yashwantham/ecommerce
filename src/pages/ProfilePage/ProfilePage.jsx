@@ -19,7 +19,7 @@ export function ProfilePage() {
                     <h1>My Profile</h1>
                     <button onClick={logoutAuthUser} className="logout-btn">Log out</button>
                 </div>
-
+                <hr />
                 <div className="nav-btns">
                     <button className="profile-btn" onClick={() => setShowdetailsof({ profile: true, addresses: false })} style={showdetailsof.profile ? {color: "#fff", backgroundColor: "#0052cc"} : {} } >
                         PROFILE

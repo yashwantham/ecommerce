@@ -29,6 +29,8 @@ export function AddressListComponents({ address }) {
         dispatchData({ type: ADD_NEW_ADDRESS, payload: addressForm });
     }
 
+    
+
     return (
         <>
             <div className="address-list-form-container">
