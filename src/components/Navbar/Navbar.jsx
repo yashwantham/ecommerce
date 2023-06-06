@@ -7,9 +7,12 @@ import { useContext } from "react";
 import { FilterContext } from "../../contexts/FilterProvider";
 import { ACTIONS } from "../../reducers/FilterReducer";
 import { AuthContext } from "../../contexts/AuthProvider";
+import { DataContext } from "../../contexts/DataProvider";
 // import Topshop_Logo from "assets/images";
 
 export function Navbar() {
+
+    const {dataState} = useContext(DataContext);
 
     const navigate = useNavigate()
 
@@ -23,6 +26,9 @@ export function Navbar() {
         dispatchFilter({type: SET_SEARCHED_TERM, payload: event.target.value});
         navigate("/productlist");
     }
+
+    const wishlistCount = dataState.wishlist.reduce((acc, prod) => acc + 1 , 0);
+    const cartCount = dataState.cart.reduce((acc, prod) => acc + 1 , 0);
 
     return (
         <>
@@ -41,10 +47,10 @@ export function Navbar() {
                 <div className="navigations">
                     <NavLink to="/productlist" className="right-nav shopnow-btn">Shop Now!</NavLink>
                     <NavLink to="/wishlist" className="right-nav icon">
-                        <FontAwesomeIcon icon={faHeart} />
+                        <FontAwesomeIcon icon={faHeart} />{wishlistCount > 0 && <span className="wish-cart-count">({wishlistCount})</span>}
                     </NavLink>
                     <NavLink to="/cart" className="right-nav icon">
-                        <FontAwesomeIcon icon={faCartShopping} />
+                        <FontAwesomeIcon icon={faCartShopping} />{cartCount > 0 && <span className="wish-cart-count">({cartCount})</span> }
                     </NavLink>
                     <NavLink to="/profile" className="right-nav icon">
                         <FontAwesomeIcon icon={faUser} />

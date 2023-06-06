@@ -3,12 +3,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { failureToastmessage } from "../../../components/Toastmessage/failureToastmessage";
+import { successToastmessage } from "../../../components/Toastmessage/successToastmessage";
+
 import "./ProductCard.css";
 import { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider";
 import { addToWishlist, isWishlisted, removeFromWishlist } from "../../../utils/wishlistService";
 import { DataContext } from "../../../contexts/DataProvider";
 import { addToCart, isPresentedInCart, removeFromCart } from "../../../utils/cartService";
+
 
 
 export function ProductCard({ product }) {
@@ -28,12 +34,15 @@ export function ProductCard({ product }) {
         e.preventDefault();
         if(!authState.isLoggedin) {
             navigate("/login");
+            failureToastmessage("Please login to continue!");
         }
         else if(isWishlisted(dataState, product._id)) {
             removeFromWishlist(authToken, product._id, dispatchData);
+            successToastmessage("Product removed from wishlist");
         } 
         else {
             addToWishlist(authToken, product, dispatchData);
+            successToastmessage("Product added to wishlist");
         }
     }
 
@@ -41,12 +50,15 @@ export function ProductCard({ product }) {
         e.preventDefault();
         if(!authState.isLoggedin) {
             navigate("/login");
+            failureToastmessage("Please login to continue!")
         }
         else if(isPresentedInCart(dataState, product._id)) {
             removeFromCart(authToken, product._id, dispatchData);
+            failureToastmessage("Product removed from cart")
         }
         else {
-            addToCart(authToken, product, dispatchData)
+            addToCart(authToken, product, dispatchData);
+            successToastmessage("Product added to wishlist");
         }
     }
  
@@ -98,6 +110,7 @@ export function ProductCard({ product }) {
                         </div>
                     </div>
                 </NavLink>
+                <ToastContainer/>
             </div>
         </>
     )

@@ -8,16 +8,21 @@ import "./ProfilePage.css";
 export function ProfilePage() {
 
     const { logoutAuthUser } = useContext(AuthContext);
-    const { dataState } = useContext(DataContext);
+    const { dataState, clearWishlistCart } = useContext(DataContext);
 
     const [showdetailsof, setShowdetailsof] = useState({ profile: true, addresses: false })
+
+    const logoutHandler = () => {
+        logoutAuthUser();
+        clearWishlistCart();
+    }
 
     return (
         <>
             <div className="profilepage-container">
                 <div className="heading-n-logoutbtn">
                     <h1>My Profile</h1>
-                    <button onClick={logoutAuthUser} className="logout-btn">Log out</button>
+                    <button onClick={() => logoutHandler()} className="logout-btn">Log out</button>
                 </div>
                 <hr />
                 <div className="nav-btns">

@@ -14,6 +14,9 @@ import { SingleproductPage } from "./pages/SingleproductPage/SingleproductPage";
 import { RequiresAuth } from "./utils/RequiresAuth";
 import { LogoutPage } from "./pages/AuthenticationPages/logout/LogoutPage";
 import { CheckoutPage } from "./pages/CheckoutPage/CheckoutPage";
+import { OrderplacedPage } from "./pages/OrderplacedPage/OrderplacedPage";
+
+
 
 function App() {
   return (
@@ -52,6 +55,14 @@ function App() {
           element={
             <RequiresAuth>
               <CheckoutPage />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/orderplaced"
+          element={
+            <RequiresAuth>
+              <OrderplacedPage />
             </RequiresAuth>
           }
         />

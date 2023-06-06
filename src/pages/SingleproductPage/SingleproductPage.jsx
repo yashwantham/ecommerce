@@ -8,6 +8,12 @@ import { AuthContext } from "../../contexts/AuthProvider";
 import { addToCart, isPresentedInCart, removeFromCart } from "../../utils/cartService";
 import { DataContext } from "../../contexts/DataProvider";
 import { addToWishlist, isWishlisted, removeFromWishlist } from "../../utils/wishlistService";
+import { Spinner } from "../../components/Spinner/Spinner";
+
+
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { successToastmessage } from "../../components/Toastmessage/successToastmessage";
 
 export function SingleproductPage() {
 
@@ -47,9 +53,11 @@ export function SingleproductPage() {
         }
         else if(isWishlisted(dataState, product._id)) {
             removeFromWishlist(authToken, product._id, dispatchData);
+            successToastmessage("Product removed from wishlist");
         } 
         else {
             addToWishlist(authToken, product, dispatchData);
+            successToastmessage("Product added to wishlist");
         }
     }
 
@@ -60,9 +68,11 @@ export function SingleproductPage() {
         }
         else if(isPresentedInCart(dataState, product._id)) {
             removeFromCart(authToken, product._id, dispatchData);
+            successToastmessage("Product removed from cart");
         }
         else {
-            addToCart(authToken, product, dispatchData)
+            addToCart(authToken, product, dispatchData);
+            successToastmessage("Product added to cart");
         }
     }
  
@@ -73,6 +83,7 @@ export function SingleproductPage() {
 
     return (
         <>
+            {Object.keys(selectedProduct).length === 0 && <Spinner/>}
             <div className="selectedproduct-detail-container">
 
                 <div className="selectedproduct-img-container">
@@ -102,12 +113,12 @@ export function SingleproductPage() {
                         <small className="taxes-text">inclusive of all taxes</small>
                         <div className="selectedproduct-btns">
                             <div className="selectedproduct-addtocart-btn">
-                            {isPresentedInCart(dataState, selectedProduct._id) ?<button  onClick={(e) => goToCartHandler(e)}>Go to Cart</button> :
+                            {isPresentedInCart(dataState, selectedProduct?._id) ?<button  onClick={(e) => goToCartHandler(e)}>Go to Cart</button> :
                             <button onClick={(e) => addToCartHandler(e, authToken, selectedProduct)}>Add to Cart</button>}
                                 
                             </div>
                             <div className="selectedproduct-wishlist-btn">
-                                {isWishlisted(dataState, selectedProduct._id) ? <button onClick={(e) => addToWishlistHandler(e, authToken, selectedProduct)}>Remove from wishlist</button> :
+                                {isWishlisted(dataState, selectedProduct?._id) ? <button onClick={(e) => addToWishlistHandler(e, authToken, selectedProduct)}>Remove from wishlist</button> :
                                 <button onClick={(e) => addToWishlistHandler(e, authToken, selectedProduct)}>Wishlist</button>}
                             </div>
                         </div>
@@ -133,6 +144,7 @@ export function SingleproductPage() {
                 </div>
 
             </div>
+            <ToastContainer/>
         </>
     )
 }

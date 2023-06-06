@@ -4,6 +4,7 @@ import { DataContext } from "../../../contexts/DataProvider";
 import { ProductCard } from "./ProductCard";
 import "./ProductlistPageMain.css";
 import { FilterContext } from "../../../contexts/FilterProvider";
+import { Spinner } from "../../../components/Spinner/Spinner";
 
 export function ProductlistPageMain() {
     
@@ -57,6 +58,7 @@ export function ProductlistPageMain() {
 
     return (
         <>
+            {productlist.length === 0 && <Spinner/>}
             <div className="productlist-container">
                 {filteredProductlist.map((product) => <ProductCard product={product}/>)}
             </div>

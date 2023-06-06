@@ -7,6 +7,11 @@ import { useContext } from "react";
 import { DataContext } from "../../../contexts/DataProvider";
 import { addToWishlist, isWishlisted } from "../../../utils/wishlistService";
 
+
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { successToastmessage } from "../../../components/Toastmessage/successToastmessage";
+
 export function CartProductCard({ product }) {
 
     const {dataState, dispatchData} = useContext(DataContext);
@@ -18,6 +23,7 @@ export function CartProductCard({ product }) {
     const removeFromCartHandler = (e, authToken, product, dispatchData) => {
         e.preventDefault();
         removeFromCart(authToken, product._id, dispatchData);
+        successToastmessage("Product removed from cart");
     }
 
     const moveToWishlistHandler = (e, authToken, product, dispatchData) => {
@@ -26,6 +32,7 @@ export function CartProductCard({ product }) {
             addToWishlist(authToken, product, dispatchData);
         }
         removeFromCart(authToken, product._id, dispatchData);
+        successToastmessage("Product added to wishlist");
     }
 
     const cartUpdateHandler = (e, authToken, product, type, dispatchData) => {
