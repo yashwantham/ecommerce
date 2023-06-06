@@ -8,6 +8,8 @@ export function SignupPage() {
 
     const {signupAuthUser} = useContext(AuthContext);
 
+    const [showpassword, setShowpassword] = useState({type: "password", hidden: true});
+
     const [userSignupData, setUserSignupData] = useState({ name: "", email: "", password: "", confirmPassword: ""})
     const [formError, setFormError] = useState(false)
 
@@ -25,6 +27,15 @@ export function SignupPage() {
         }
         else {
             setFormError(true);
+        }
+    }
+
+    const hideHandler = () => {
+        if(showpassword.hidden) {
+            setShowpassword((showpassword) =>( {type: "text", hidden: false}));
+        } 
+        else {
+            setShowpassword((showpassword) =>( {type: "password", hidden: true}));
         }
     }
 
@@ -46,7 +57,8 @@ export function SignupPage() {
                 </div>
                 <div className="password-container">
                     <p>Password</p>
-                    <input type="password" name="password" required className="password-input" placeholder="Enter Password" onChange={inputChangeHandler}/>
+                    <input type={showpassword.type} name="password" required className="password-input" placeholder="Enter Password" onChange={inputChangeHandler}/>
+                    <span className="show-hide-signup" onClick={hideHandler}>{showpassword.hidden ? "Show" : "Hide"}</span>
                 </div>
                 <div className="confirm-password-container">
                     <p>Confirm Password</p>

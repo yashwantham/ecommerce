@@ -6,6 +6,8 @@ import { AuthContext } from "../../../contexts/AuthProvider";
 
 export function LoginPage() {
 
+    const [showpassword, setShowpassword] = useState({type: "password", hidden: true});
+
     const {loginAuthUser} = useContext(AuthContext);
 
     const [userLoginData, setUserLoginData] = useState({email: "", password: ""});
@@ -34,6 +36,15 @@ export function LoginPage() {
         })
     }
 
+    const hideHandler = () => {
+        if(showpassword.hidden) {
+            setShowpassword((showpassword) =>( {type: "text", hidden: false}));
+        } 
+        else {
+            setShowpassword((showpassword) =>( {type: "password", hidden: true}));
+        }
+    }
+
     return (
         <>
             <div className="login-page">
@@ -48,7 +59,8 @@ export function LoginPage() {
                     </div>
                     <div className="password-container">
                         {/* <label className="passwrod">Password: </label> */}
-                        <input type="password" className="password-input" name="password" placeholder="Password" onChange={inputChangeHandler}/>
+                        <input type={showpassword.type} className="password-input" name="password" placeholder="Password" onChange={inputChangeHandler}/>
+                        <span className="show-hide" onClick={hideHandler}>{showpassword.hidden ? "Show" : "Hide"}</span>
                     </div>
                     <div className="login-btn-container">
                         <button className="login-submit-btn" type="submit" onClick={loginSubmit}>Login</button>

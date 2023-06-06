@@ -59,6 +59,14 @@
     text-decoration: underline;
 }
 
+.show-hide-signup {
+    position: absolute;
+    font-weight: 500;
+    cursor: pointer;
+    right: 39rem;
+    top: 28.3rem;
+}
+
 @media only screen and (max-width: 1024px) {
     .signup-container {
         width: 20rem;

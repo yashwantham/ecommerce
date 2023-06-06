@@ -32,6 +32,14 @@
     margin: 1rem;
 }
 
+.show-hide {
+    position: absolute;
+    font-weight: 500;
+    cursor: pointer;
+    right: 39rem;
+    top: 22rem;
+}
+
 .login-btn-container {
     margin-top: 1rem;
 }
