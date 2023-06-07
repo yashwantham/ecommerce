@@ -35,6 +35,12 @@ export function ProductlistPageAside() {
                     <button className="clr-btn" onClick={clearAllFilters}>Clear</button>
                 </div>
                 <hr />
+                <div className="sorts-filter-container">
+                    <p className="sub-heading">Sort by</p>
+                    <div><input type="radio" name="price-sorter" checked={filterState.sortBy === "LOWTOHIGH"} onChange={() => sortHandler("LOWTOHIGH")}/>Low to High</div>
+                    <div><input type="radio" name="price-sorter" checked={filterState.sortBy === "HIGHTOLOW"}  onChange={() => sortHandler("HIGHTOLOW")}/>High to Low</div>
+                </div>
+                <hr />
                 <div className="price-slider-container">
                     <p className="sub-heading">Price</p>
                     <div className="ranges">
@@ -69,11 +75,7 @@ export function ProductlistPageAside() {
                     <div><input type="radio" name="rating-sorter" id="" checked={filterState.minRating === 1} onChange={() => ratingHandler(1)}/>1 stars & above</div>
                 </div>
                 <hr />
-                <div className="sorts-filter-container">
-                    <p className="sub-heading">Sort by</p>
-                    <div><input type="radio" name="price-sorter" checked={filterState.sortBy === "LOWTOHIGH"} onChange={() => sortHandler("LOWTOHIGH")}/>Low to High</div>
-                    <div><input type="radio" name="price-sorter" checked={filterState.sortBy === "HIGHTOLOW"}  onChange={() => sortHandler("HIGHTOLOW")}/>High to Low</div>
-                </div>
+                
             </div>
         </>
     )
