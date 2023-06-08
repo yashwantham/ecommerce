@@ -6,11 +6,12 @@ import "./CartSummaryCard.css"
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { successToastmessage } from "../../../components/Toastmessage/successToastmessage";
+import { warningToastmessage } from "../../../components/Toastmessage/warningToastmessage";
 import { useContext } from "react";
 import { DataContext } from "../../../contexts/DataProvider";
 import { ACTIONS } from "../../../reducers/DataReducer";
 
-export function CartSummaryCard({cartList}) {
+export function CartSummaryCard({cartList, selectedAddress}) {
 
     const {dispatchData} = useContext(DataContext)
 
@@ -23,9 +24,29 @@ export function CartSummaryCard({cartList}) {
     const totalPrice = (cartList) => cartList.reduce((acc, {qty, price}) => acc + (qty * price) , 0);
 
     const placeorderHandler = () => {
-        successToastmessage("Order has been placed successfully!!");
-        navigate("/orderplaced")
-        dispatchData({type: SET_CART_ITEMS, payload: []});
+
+        if(selectedAddress === null) {
+            warningToastmessage("Please select adress!");
+            return;
+        }
+
+        var option={
+            key:"rzp_test_nihSKlevk7rG9M",
+            amount:Number(totalPrice(cartList)) * 100,
+            currency:'INR',
+            name:"TOPSHOP",
+            description:"",
+            handler:function(response){
+            successToastmessage("Order has been placed successfully!!");
+            navigate("/orderplaced")
+            dispatchData({type: SET_CART_ITEMS, payload: []});
+            },
+            theme:{
+              color: "#0052cc",
+            },
+        };
+        var pay=new window.Razorpay(option);
+        pay.open();
     }
 
     return (
@@ -56,6 +77,7 @@ export function CartSummaryCard({cartList}) {
                     Place Order
                 </button>}
             </div>
+            <ToastContainer/>
         </>
     )
 }

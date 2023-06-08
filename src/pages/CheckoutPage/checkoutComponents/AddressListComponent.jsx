@@ -6,7 +6,7 @@ import { DataContext } from "../../../contexts/DataProvider";
 import { ACTIONS } from "../../../reducers/DataReducer";
 import { useLocation } from "react-router-dom";
 
-export function AddressListComponents({ address }) {
+export function AddressListComponents({ address, setSelectedAddress }) {
 
     const location = useLocation()
 
@@ -39,7 +39,7 @@ export function AddressListComponents({ address }) {
                 {!(location?.pathname === "/profile") && <p className="select-address">
                         Select Address
                     </p>}
-                    {address.map((oneAddress) => <AddressCard address={oneAddress} />)}
+                    {address.map((oneAddress) => <AddressCard address={oneAddress} setSelectedAddress={setSelectedAddress}/>)}
                 </div>
 
                 {!addressFromShow && <div className="add-address">

@@ -5,7 +5,7 @@ import { DataContext } from "../../../contexts/DataProvider";
 import { ACTIONS } from "../../../reducers/DataReducer";
 import { AddressForm } from "./AddressForm";
 
-export function AddressCard({ address }) {
+export function AddressCard({ address, setSelectedAddress }) {
 
     const [showEditForm, setShowEditForm] = useState(false);
 
@@ -18,13 +18,20 @@ export function AddressCard({ address }) {
     const deleteAddress = (id) => dispatchData({ type: DELETE_ADDRESS, payload: id })
 
     const updateAddress = (id, changedAddress) => dispatchData({type: UPDATE_ADDRESS, payload: {id, changedAddress}})
+
+    const addressSelectionHandler = (e) => {
+        console.log(e.target.value)
+        setSelectedAddress(e.target.value);
+    }
     
+    console.log("id = ", address._id)
+
     return (
         <>
             <div className="address-card-n-btns">
-                <div className="address-card-container" key={address.id}>
+                <div className="address-card-container" key={address._id}>
                     {!(location?.pathname === "/profile") && <div className="radio-input">
-                        <input type="radio" name="address" required/>
+                        <input type="radio" name="address" required value={address._id} onChange={(e) => addressSelectionHandler(e)}/>
                     </div>}
                     <div className="address-details">
                         <p>{address.name}</p>
