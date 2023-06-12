@@ -20,11 +20,8 @@ export function AddressCard({ address, setSelectedAddress }) {
     const updateAddress = (id, changedAddress) => dispatchData({type: UPDATE_ADDRESS, payload: {id, changedAddress}})
 
     const addressSelectionHandler = (e) => {
-        console.log(e.target.value)
         setSelectedAddress(e.target.value);
     }
-    
-    console.log("id = ", address._id)
 
     return (
         <>

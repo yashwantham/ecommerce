@@ -30,14 +30,16 @@
 
 .password-container {
     margin: 1rem;
+    position: relative;
 }
+
 
 .show-hide {
     position: absolute;
     font-weight: 500;
     cursor: pointer;
-    right: 39rem;
-    top: 22rem;
+    right: 1rem;
+    top: 0.65rem;
 }
 
 .login-btn-container {
