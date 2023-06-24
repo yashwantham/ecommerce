@@ -1,7 +1,7 @@
 import { v4 as uuid } from "uuid";
 export const exampleAdress = {
     _id:uuid(),
-    name: "David Anderson",
+    name: "Kevin De Bruyne",
     houseNumber:"24JP",
     street: "JP Nagar, 4th phase",
     city: "Bengaluru",
