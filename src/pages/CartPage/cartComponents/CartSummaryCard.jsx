@@ -10,11 +10,8 @@ import { warningToastmessage } from "../../../components/Toastmessage/warningToa
 import { useContext } from "react";
 import { DataContext } from "../../../contexts/DataProvider";
 import { ACTIONS } from "../../../reducers/DataReducer";
-import { clearCartAfterOrder } from "../../../utils/cartService";
 
 export function CartSummaryCard({cartList, selectedAddress}) {
-
-    const authToken = localStorage.getItem("userToken");
 
     const {dispatchData} = useContext(DataContext)
 
@@ -40,10 +37,9 @@ export function CartSummaryCard({cartList, selectedAddress}) {
             name:"TOPSHOP",
             description:"",
             handler:function(response){
-                successToastmessage("Order has been placed successfully!!");
-                dispatchData({type: SET_CART_ITEMS, payload: []});
-                // clearCartAfterOrder(cartList, authToken, dispatchData);
-                navigate("/orderplaced")
+            successToastmessage("Order has been placed successfully!!");
+            navigate("/orderplaced")
+            dispatchData({type: SET_CART_ITEMS, payload: []});
             },
             theme:{
               color: "#0052cc",

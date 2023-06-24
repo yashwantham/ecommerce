@@ -68,9 +68,3 @@ export const updateItemQuantityInCart = async (
 export const isPresentedInCart = (dataState, id) => {
   return dataState.cart.find(({ _id }) => id === _id) ? true : false;
 };
-
-export const clearCartAfterOrder = (cartList, authToken, dispatchData) => {
-  for(let i = 0; i < cartList.length; i++) {
-    removeFromCart(authToken, cartList._id, dispatchData);
-  }
-}
