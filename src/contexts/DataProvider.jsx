@@ -34,6 +34,7 @@ export const DataProvider = ({ children }) => {
     const getProductlist = async () => {
         try {
             const response = await axios.get("/api/products");
+            console.log(response);
             if (response.status === 200) dispatchData({ type: SET_PRODUCTLIST, payload: response.data.products })
         }
         catch (error) { console.error(error); }
