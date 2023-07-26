@@ -21,17 +21,18 @@ export function SingleproductPage() {
 
     const authToken = localStorage.getItem("userToken");
 
-    const {authState} = useContext(AuthContext);
-    const {dataState, dispatchData} = useContext(DataContext);
+    const { authState } = useContext(AuthContext);
+    const { dataState, dispatchData } = useContext(DataContext);
 
 
     const [selectedProduct, setSelectedProduct] = useState({});
     const { productId } = useParams();
 
-    const getProduct = async() => {
-        try{
+    const getProduct = async () => {
+        try {
             const response = await axios.get(`/api/products/${productId}`);
-            if(response.status === 200){ console.log(response)
+            if (response.status === 200) {
+                console.log(response)
                 setSelectedProduct(response.data.product);
             }
         }
@@ -41,20 +42,20 @@ export function SingleproductPage() {
     }
 
     useEffect(() => {
-         getProduct();
+        getProduct();
     }, [productId])
 
     const discountPercentage = (price, original_price) => Math.round((price / original_price) * 100);
 
     const addToWishlistHandler = (e, authToken, product) => {
         e.preventDefault();
-        if(!authState.isLoggedin) {
+        if (!authState.isLoggedin) {
             navigate("/login");
         }
-        else if(isWishlisted(dataState, product._id)) {
+        else if (isWishlisted(dataState, product._id)) {
             removeFromWishlist(authToken, product._id, dispatchData);
             successToastmessage("Product removed from wishlist");
-        } 
+        }
         else {
             addToWishlist(authToken, product, dispatchData);
             successToastmessage("Product added to wishlist");
@@ -63,10 +64,10 @@ export function SingleproductPage() {
 
     const addToCartHandler = (e, authToken, product) => {
         e.preventDefault();
-        if(!authState.isLoggedin) {
+        if (!authState.isLoggedin) {
             navigate("/login");
         }
-        else if(isPresentedInCart(dataState, product._id)) {
+        else if (isPresentedInCart(dataState, product._id)) {
             removeFromCart(authToken, product._id, dispatchData);
             successToastmessage("Product removed from cart");
         }
@@ -75,7 +76,7 @@ export function SingleproductPage() {
             successToastmessage("Product added to cart");
         }
     }
- 
+
     const goToCartHandler = (event) => {
         event.preventDefault();
         navigate("/cart");
@@ -83,9 +84,9 @@ export function SingleproductPage() {
 
     return (
         <>
-            {Object.keys(selectedProduct).length === 0 && <Spinner/>}
+            {Object.keys(selectedProduct).length === 0 && <Spinner />}
             <div className="selectedproduct-detail-container">
-
+ 
                 <div className="selectedproduct-img-container">
                     <img className="selectedproduct-img" src={selectedProduct?.image} alt="" />
                 </div>
@@ -113,13 +114,13 @@ export function SingleproductPage() {
                         <small className="taxes-text">inclusive of all taxes</small>
                         <div className="selectedproduct-btns">
                             <div className="selectedproduct-addtocart-btn">
-                            {isPresentedInCart(dataState, selectedProduct?._id) ?<button  onClick={(e) => goToCartHandler(e)}>Go to Cart</button> :
-                            <button onClick={(e) => addToCartHandler(e, authToken, selectedProduct)}>Add to Cart</button>}
-                                
+                                {isPresentedInCart(dataState, selectedProduct?._id) ? <button onClick={(e) => goToCartHandler(e)}>Go to Cart</button> :
+                                    <button onClick={(e) => addToCartHandler(e, authToken, selectedProduct)}>Add to Cart</button>}
+
                             </div>
                             <div className="selectedproduct-wishlist-btn">
                                 {isWishlisted(dataState, selectedProduct?._id) ? <button onClick={(e) => addToWishlistHandler(e, authToken, selectedProduct)}>Remove from wishlist</button> :
-                                <button onClick={(e) => addToWishlistHandler(e, authToken, selectedProduct)}>Wishlist</button>}
+                                    <button onClick={(e) => addToWishlistHandler(e, authToken, selectedProduct)}>Wishlist</button>}
                             </div>
                         </div>
                     </div>
@@ -144,7 +145,7 @@ export function SingleproductPage() {
                 </div>
 
             </div>
-            <ToastContainer/>
+            <ToastContainer />
         </>
     )
 }

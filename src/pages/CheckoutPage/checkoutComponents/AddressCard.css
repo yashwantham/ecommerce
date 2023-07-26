@@ -1,3 +1,10 @@
+.addresscard-n-editform {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .address-card-n-btns {
     width: 15rem;
     border: 2px solid var(--gray-color);

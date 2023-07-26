@@ -4,3 +4,11 @@
     flex-wrap: wrap;
     justify-content: space-around;
 }
+
+/* Styles for mobiles */
+@media (max-width: 768px) {
+
+    .productlist-container {
+        margin-top: 4.2rem;
+    }
+}

@@ -29,18 +29,18 @@ export function HomePage() {
             <div className="homepage-container">
 
                 <div className="main-img-container">
-                    <img className="main-img" src="assets/images/homepageimg.jpg" alt="" onClick={() => navigate("/productlist")} />
+                    <img className="main-img" src="https://res.cloudinary.com/ddqytua2y/image/upload/v1690399883/E-commerce-assets/ec9npl4rwwjk6fpg6ly7.avif" alt="" onClick={() => navigate("/productlist")} />
                 </div>
 
                 <div className="category-container">
 
                     <div className="container-heading">
-                        <h2 className="heading">SHOP BY CATEGORY</h2>
+                        <p className="heading">SHOP BY CATEGORY</p>
                     </div>
 
                     <div className="categories-list">
                         {categories.map(({ _id, categoryName, description, image }) => (
-                            <NavLink to="/productlist" onClick={() => categoryNavigationHandler(categoryName.toUpperCase())}>
+                            <NavLink to="/productlist" onClick={() => categoryNavigationHandler(categoryName.toUpperCase())} className="category-nav">
                                 <div key={_id} className="category-item">
                                     <div className="category-img-container">
                                         <img className="category-img" src={image} alt="" />

@@ -1,10 +1,12 @@
-import { createContext, useReducer } from "react"
+import { createContext, useReducer, useState } from "react"
 
 import { FilterRedcuer } from "../reducers/FilterReducer";
 
 export const FilterContext = createContext();
 
 export function FilterProvider({ children }) {
+
+    const [viewasidemobile, setViewAsidemobile] = useState(false);
 
     const [filterState, dispatchFilter] = useReducer(FilterRedcuer, {
         maxPriceRange: 4000, category: {
@@ -16,7 +18,7 @@ export function FilterProvider({ children }) {
 
     return (
         <>
-            <FilterContext.Provider value={{dispatchFilter, filterState}}>{children}</FilterContext.Provider>
+            <FilterContext.Provider value={{dispatchFilter, filterState, viewasidemobile, setViewAsidemobile}}>{children}</FilterContext.Provider>
         </>
     )
 }

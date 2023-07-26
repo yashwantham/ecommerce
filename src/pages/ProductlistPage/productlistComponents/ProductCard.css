@@ -17,6 +17,7 @@
 }
 
 .product-card {
+    text-decoration: none;
     color: #000000;
     text-align: left;
     display: flex;
@@ -122,4 +123,14 @@
 .addtocart-btn:hover {
     color: #fff;
     background-color: var(--primary-color);
+}
+
+
+/* Styles for mobiles */
+
+@media (max-width: 768px) {
+
+    .productcard-container {
+        margin: 1rem;
+    }
 }
